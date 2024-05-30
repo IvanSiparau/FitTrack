@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив тренировок</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2A2929; /* Заменён черный фон */
+            color: #fff; /* Белые надписи */
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #2A2929; /* Заменён черный фон меню */
+            display: flex;
+            justify-content: center;
+            padding: 20px 0; /* Увеличение высоты меню */
+            border-bottom: 1px solid #fff; /* Тонкая белая граница снизу */
+            z-index: 1000;
+        }
+        .menu a {
+            color: #fff; /* Белый цвет текста */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px; /* Размер шрифта */
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ffeb3b;
+        }
+        .container {
+            width: 80%;
+            margin: 120px auto 20px auto; /* Отступ сверху для меню */
+            background-color: #2A2929; /* Цвет фона контейнера */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень контейнера */
+            color: #fff; /* Белый цвет текста */
+            border-radius: 10px;
+        }
+        .item {
+            background-color: #444444; /* Фон блоков */
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            color: #fff; /* Белый цвет текста */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .item:hover {
+            background-color: #555555; /* Изменение цвета при наведении */
+        }
+        .item h3 {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-content {
+            display: none;
+            padding-top: 10px;
+        }
+        .item.active .item-content {
+            display: block;
+        }
+        .item::before {
+            content: '▼';
+            font-size: 18px;
+            color: #ffeb3b;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        .item.active::before {
+            transform: rotate(-180deg); /* Поворот значка при раскрытии */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="archiv.html">Архив тренировок</a>
+        <a href="analitics.html">Аналитика тренировок</a>
+        <a href="start_trainer.html">Начать тренировку</a>
+    </div>
+    <div class="container">
+        <div class="item" onclick="toggleItem(this)">
+            <h3>Тренировка 1 - 01.01.2024 <span>Длительность: 60 минут</span></h3>
+            <div class="item-content">
+                <p><strong>Упражнения:</strong> Разминка - 10 минут, Бег - 30 минут, Силовые упражнения - 20 минут</p>
+                <p><strong>Калории:</strong> 500 ккал</p>
+            </div>
+        </div>
+        <div class="item" onclick="toggleItem(this)">
+            <h3>Тренировка 2 - 02.01.2024 <span>Длительность: 45 минут</span></h3>
+            <div class="item-content">
+                <p><strong>Упражнения:</strong> Разминка - 5 минут, Йога - 20 минут, Плавание - 20 минут</p>
+                <p><strong>Калории:</strong> 350 ккал</p>
+            </div>
+        </div>
+        <div class="item" onclick="toggleItem(this)">
+            <h3>Тренировка 3 - 03.01.2024 <span>Длительность: 50 минут</span></h3>
+            <div class="item-content">
+                <p><strong>Упражнения:</strong> Разминка - 10 минут, Силовые упражнения - 30 минут, Растяжка - 10 минут</p>
+                <p><strong>Калории:</strong> 400 ккал</p>
+            </div>
+        </div>
+        <!-- Добавьте больше блоков тренировки по мере необходимости -->
+    </div>
+
+    <script>
+        function toggleItem(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

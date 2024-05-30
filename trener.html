@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник тренера</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2A2929;
+            color: #fff;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #2A2929;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #fff;
+            z-index: 1000;
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ffeb3b;
+        }
+        .container {
+            width: 80%;
+            margin: 120px auto 20px auto;
+            background-color: #2A2929;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-radius: 10px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        .profile-info {
+            flex: 1;
+        }
+        .profile-info h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .reviews, .additional-sections {
+            margin-top: 20px;
+        }
+        .review, .section {
+            background-color: #444444;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .review h4, .section h4 {
+            margin: 0 0 10px 0;
+        }
+        .review p, .section p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="archiv.html">Архив тренировок</a>
+        <a href="analitics.html">Аналитика тренировок</a>
+        <a href="start_trainer.html">Начать тренировку</a>
+    </div>
+    <div class="container">
+        <div class="profile">
+            <img src="trainer-photo.jpg" alt="Фото тренера">
+            <div class="profile-info">
+                <h2>Иван Иванов</h2>
+                <p><strong>Возраст:</strong> 35 лет</p>
+                <p><strong>Опыт работы:</strong> 10 лет</p>
+                <p><strong>Специализация:</strong> Фитнес, бодибилдинг, йога</p>
+            </div>
+        </div>
+        <div class="reviews">
+            <h3>Отзывы</h3>
+            <div class="review">
+                <h4>Алексей Петров</h4>
+                <p>Отличный тренер! Помог мне достичь моих целей за короткий срок.</p>
+            </div>
+            <div class="review">
+                <h4>Мария Смирнова</h4>
+                <p>Очень внимательный и профессиональный подход. Рекомендую!</p>
+            </div>
+        </div>
+        <div class="additional-sections">
+            <h3>Дополнительные секции</h3>
+            <div class="section">
+                <h4>Методики тренировок</h4>
+                <p>Описание различных методик и подходов, которые использует тренер в своей работе.</p>
+            </div>
+            <div class="section">
+                <h4>Личные достижения</h4>
+                <p>Список личных достижений тренера, таких как участие в соревнованиях и завоеванные награды.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

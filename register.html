@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2A2929; /* Черный фон */
+            color: #fff; /* Белые надписи */
+        }
+        .menu {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #2A2929; /* Черный фон меню */
+            display: flex;
+            justify-content: center;
+            padding: 20px 0; /* Увеличение высоты меню */
+            border-bottom: 1px solid #fff; /* Тонкая белая граница снизу */
+        }
+        .menu a {
+            color: #fff; /* Белый цвет текста */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px; /* Размер шрифта */
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ffeb3b;
+        }
+        .form-container {
+            width: 350px; /* Увеличим ширину контейнера */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            border-radius: 20px; /* Овальные углы */
+            margin-top: 100px; /* Отступ сверху увеличен до 100px */
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="date"] {
+            width: 100%;
+            padding: 15px; /* Увеличим отступы вокруг поля */
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 2px solid #fff; /* Белая граница */
+            border-radius: 20px; /* Овальные углы */
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            color: #fff; /* Белый цвет текста */
+            font-size: 16px; /* Увеличим размер шрифта */
+        }
+        .gender-label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .gender-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .gender-options label {
+            display: inline-block;
+            cursor: pointer;
+            background-color: #222;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .gender-options label:hover {
+            background-color: #333;
+        }
+        .gender-options input[type="radio"] {
+            display: none;
+        }
+        .gender-options input[type="radio"]:checked + label {
+            background-color: #fff;
+            color: #2A2929;
+        }
+        .form-container input[type="submit"] {
+            width: 60%; /* Увеличим ширину кнопки */
+            padding: 15px;
+            border: 2px solid #fff; /* Белые границы */
+            border-radius: 20px; /* Овальные углы */
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            color: #fff; /* Белый цвет текста */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px; /* Увеличим размер шрифта */
+            margin: 20px auto 0; /* Отцентрируем кнопку и добавим отступ сверху */
+            display: block; /* Сделаем кнопку блочным элементом, чтобы применить margin:auto для отцентрирования */
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Прозрачный фон при наведении */
+        }
+        .form-container h2 {
+            margin-top: 0;
+            font-size: 24px; /* Увеличим размер заголовка */
+            text-decoration: underline; /* Добавим нижнее подчеркивание */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="archiv.html">Архив тренировок</a>
+        <a href="analitics.html">Аналитика тренировок</a>
+        <a href="start_trainer.html">Начать тренировку</a>
+    </div>
+    <div class="form-container">
+        <h2>Регистрация</h2>
+        <form action="status_user.html" method="post">
+            <label for="name">Имя Фамилия:</label>
+            <input type="text" id="name" name="name" required>
+            <div class="gender-label">Пол:</div>
+            <div class="gender-options">
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Мужской</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Женский</label>
+                <input type="radio" id="other" name="gender" value="other" required>
+                <label for="other">Другой</label>
+            </div>
+            <label for="birthdate">Дата Рождения:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+            <label for="email">Почта:</label>
+            <input type="text" id="email" name="email" required>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+</body>
+</html>

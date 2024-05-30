@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2A2929; /* Заменён черный фон */
+            color: #fff; /* Белые надписи */
+        }
+        .menu {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #2A2929; /* Заменён черный фон меню */
+            display: flex;
+            justify-content: center;
+            padding: 20px 0; /* Увеличение высоты меню */
+            border-bottom: 1px solid #fff; /* Тонкая белая граница снизу */
+        }
+        .menu a {
+            color: #fff; /* Белый цвет текста */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px; /* Размер шрифта */
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ffeb3b;
+        }
+        .container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 250px; /* Увеличение расстояния между кнопками */
+            margin-top: 150px; /* Увеличенный отступ сверху, чтобы кнопки были выше */
+        }
+        .section {
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff; /* Белый цвет заголовков */
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff; /* Белый цвет текста кнопок */
+            background-color: transparent; /* Прозрачный фон */
+            border: 2px solid #fff; /* Белые границы */
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            width: 200px; /* Задание фиксированной ширины */
+            margin-top: 5px;
+        }
+        .btn:hover {
+            background-color: #fff; /* Белый фон при наведении */
+            color: #2A2929; /* Черный цвет текста при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="archiv.html">Архив тренировок</a>
+        <a href="analitics.html">Аналитика тренировок</a>
+        <a href="start_trainer.html">Начать тренировку</a>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Есть учетная запись</h2>
+            <a href="enter.html" class="btn">Войти</a>
+        </div>
+        <div class="section">
+            <h2>Нет учетной записи</h2>
+            <a href="register.html" class="btn">Создать аккаунт</a>
+        </div>
+    </div>
+</body>
+</html>

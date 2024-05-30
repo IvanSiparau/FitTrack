@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начать тренировку</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2A2929; /* Черный фон */
+            color: #fff; /* Белые надписи */
+        }
+        .menu {
+            width: 100%;
+            background-color: #2A2929; /* Черный фон меню */
+            display: flex;
+            justify-content: center;
+            padding: 10px 0; /* Уменьшенная высота меню */
+            border-bottom: 1px solid #fff; /* Тонкая белая граница снизу */
+        }
+        .menu a {
+            color: #fff; /* Белый цвет текста */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px; /* Размер шрифта */
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ffeb3b;
+        }
+        .form-container {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            border-radius: 10px; /* Меньшие овальные углы */
+            margin-top: 20px; /* Уменьшенный отступ сверху */
+            text-align: left;
+        }
+        .form-container label,
+        .form-container input[type="number"] {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container input[type="number"] {
+            width: 150px; /* Компактная ширина поля */
+            padding: 5px; /* Уменьшенные отступы вокруг поля */
+            box-sizing: border-box;
+            border: 2px solid #fff; /* Белая граница */
+            border-radius: 10px; /* Меньшие овальные углы */
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            color: #fff; /* Белый цвет текста */
+            font-size: 14px; /* Уменьшенный размер шрифта */
+        }
+        .form-container button {
+            width: 100px; /* Компактная ширина кнопки */
+            padding: 5px;
+            border: 2px solid #fff; /* Белые границы */
+            border-radius: 10px; /* Меньшие овальные углы */
+            background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+            color: #fff; /* Белый цвет текста */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px; /* Уменьшенный размер шрифта */
+            margin: 5px 0; /* Компактные отступы */
+        }
+        .form-container button:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Прозрачный фон при наведении */
+        }
+        .timer {
+            font-size: 96px; /* Увеличенный размер таймера в два раза */
+            margin: 10px;
+        }
+        .status {
+            font-size: 14px; /* Уменьшенный размер статуса */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="archiv.html">Архив тренировок</a>
+        <a href="analitics.html">Аналитика тренировок</a>
+        <a href="start_trainer.html">Начать тренировку</a>
+    </div>
+    <div class="timer" id="timer">00:00:00</div>
+    <div class="status" id="status"></div>
+    <div class="form-container">
+        <label for="sets">Количество подходов:</label>
+        <input type="number" id="sets" name="sets" min="1" required>
+        <label for="rest-time">Время отдыха (в секундах):</label>
+        <input type="number" id="rest-time" name="rest-time" min="1" required>
+        <button onclick="startWorkout()">Начать</button>
+        <button onclick="completeSet()">Подход</button>
+        <button onclick="stopWorkout()">Стоп</button>
+        <button onclick="resetWorkout()">Сброс</button>
+    </div>
+
+    <script>
+        let workoutTimer;
+        let restTimer;
+        let isRunning = false;
+        let isResting = false;
+        let startTime;
+        let elapsedTime = 0;
+        let currentSet = 0;
+        let totalSets;
+        let restTime;
+
+        function updateTimer() {
+            const currentTime = Date.now();
+            const timeElapsed = elapsedTime + (currentTime - startTime);
+
+            const hours = Math.floor(timeElapsed / (1000 * 60 * 60));
+            const minutes = Math.floor((timeElapsed % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeElapsed % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').textContent =
+                String(hours).padStart(2, '0') + ':' +
+                String(minutes).padStart(2, '0') + ':' +
+                String(seconds).padStart(2, '0');
+        }
+
+        function startWorkout() {
+            totalSets = document.getElementById('sets').value;
+            restTime = document.getElementById('rest-time').value;
+            currentSet = 0;
+            elapsedTime = 0; // сбрасываем время при начале новой тренировки
+            startSet();
+        }
+
+        function startSet() {
+            if (currentSet < totalSets) {
+                isRunning = true;
+                isResting = false;
+                currentSet++;
+                document.getElementById('status').textContent = 'Подход ' + currentSet + ' из ' + totalSets;
+                startTime = Date.now();
+                workoutTimer = setInterval(updateTimer, 1000);
+            } else {
+                document.getElementById('status').textContent = 'Тренировка завершена!';
+            }
+        }
+
+        function completeSet() {
+            if (isRunning) {
+                clearInterval(workoutTimer);
+                elapsedTime += Date.now() - startTime;
+                startRest();
+            }
+        }
+
+        function startRest() {
+            isRunning = false;
+            isResting = true;
+            let restCounter = restTime;
+            document.getElementById('status').textContent = 'Отдых: ' + restCounter + ' сек';
+            restTimer = setInterval(() => {
+                restCounter--;
+                document.getElementById('status').textContent = 'Отдых: ' + restCounter + ' сек';
+                if (restCounter <= 0) {
+                    clearInterval(restTimer);
+                    startSet();
+                }
+            }, 1000);
+        }
+
+        function stopWorkout() {
+            clearInterval(workoutTimer);
+            clearInterval(restTimer);
+            if (isRunning || isResting) {
+                elapsedTime += Date.now() - startTime;
+            }
+            isRunning = false;
+            isResting = false;
+        }
+
+        function resetWorkout() {
+            clearInterval(workoutTimer);
+            clearInterval(restTimer);
+            isRunning = false;
+            isResting = false;
+            startTime = null;
+            elapsedTime = 0;
+            currentSet = 0;
+            document.getElementById('timer').textContent = '00:00:00';
+            document.getElementById('status').textContent = '';
+        }
+    </script>
+</body>
+</html>
